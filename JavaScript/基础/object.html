@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+   <script>
+
+/* -------------------------------利用构造函数创建对象--------------------------------------- */
+
+        // 我们需要创建四大天王的对象  相同的属性： 名字 年龄 性别  相同的方法： 唱歌 
+        function Star(uname, age, sex) {
+            this.name = uname;
+            this.age = age;
+            this.sex = sex;
+            this.sing = function(sang) {
+                console.log(sang);
+            }
+        }
+
+        var ldh = new Star('刘德华', 18, '男'); 
+        console.log(ldh.name);
+        console.log(ldh['sex']);
+        ldh.sing('冰雨');
+
+        var zxy = new Star('张学友', 19, '男');
+        console.log(zxy.name);
+        console.log(zxy.age);
+        zxy.sing('李香兰')
+
+       // 遍历对象
+         for (var k in ldh) {
+            console.log(k); 
+            console.log(ldh[k]); 
+            }
+
+        /*  1. 首字母要大写
+            2. 不需要return 就可以返回结果
+            3. 调用构造函数 必须使用 new
+            4. 只要new Star() 调用函数就创建一个对象 ldh  {}
+            5. 我们的属性和方法前面必须添加 this，指向当前创建的对象
+          */
+
+
+
+
+
+
+
+/*---------------------------------------------- 克隆对象 ----------------------------------------*/
+//直接赋值，对象之间会互相影响，因为是同一个地址
+const objcc=ldh;
+
+
+
+//1.1 浅拷贝对象 (展开运算符)  如果是多层对象，会互相影响
+const newObj={...Object}
+  
+obj.assign(old,newObj)    //原对象，新对象
+
+//2.1  深克隆
+const o= _cloneDeep(ldh);
+
+
+//3.2 JSON(应该是先转成JSON了再转对象实现克隆)
+const ob=JSON.parse(JSON.stringify(ldh))
+
+
+
+
+
+/* 构造函数 */
+//1.当使用构造函数创建实例对象的时候，如果存在共同的方法就会存在浪费，不如抽取出共有方法，
+//实现静态方法，一处随时调用。就是原型对象
+function Stars(uname,age) {
+    this.uname=uname;
+    this.age=age;
+}
+
+
+
+//Star.prototype本身返回一个对象
+//封装成静态方法（原型方法），即使是其他实例对象也能调用，构造函数和原型对象的this都指向实例对象
+Star.prototype.sing=function(){console.log('我会唱歌');}
+
+
+
+//任何实例对象调用原型对象上的方法
+let one=new Stars(tom,56)
+one.sing;
+
+
+
+//数组原型对象扩展最大值方法
+Array.prototype.max=function(){
+    return Math.max(...this)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   </script>
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

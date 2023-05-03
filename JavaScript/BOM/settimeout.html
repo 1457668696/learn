@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<!-- 都在在匿名函数中执行， -->
+
+
+
+    <script>
+//                                   1.settimeout                                
+
+        //windows可省略，第二参数是等待时间后添加到任务队列，只执行一次。
+        let Timeid = setTimeout(() => console.log('hello'), 3000)
+
+        //返回一个超时ID作为唯一标示，第几个任务。只有一个就是等=1.可以在任务未执行时取消
+        console.log(Timeid);
+
+        //如果在set执行前调用了这个方法，就会取消任务，执行后无效。要绑定时间的
+        clearTimeout(Timeid);
+
+
+
+
+
+//                                   2.setInterval
+
+       //同理直接用，执行时间短、非阻塞的回调函数比较适合setInterval()，定时添加任务。不关心执行完成，有个问题就是间隔就不准确了。
+        let a = 1;
+        let Timeid1 = setInterval(() => {
+            
+            console.log(`正在加加：${++a}`);
+
+            if(a==20){
+
+                //取消方法
+            clearInterval(Timeid1);
+
+        }
+        }
+, 1000);
+         
+
+       
+//                                  3.嵌套setTimeout（替代2），因为必须执行完才会下一个，保证了时间间隔上的准确性，
+           let num=0;
+           let max=10;
+           let Number=()=>{
+               
+               num++;
+               if (num<max) {
+
+                //这里的任务在内部循环，不要记录id开启新任务
+                setTimeout(Number,500);
+
+               } else {
+                
+                console.log(`已经完成,num为:${num}`);
+       
+               }
+
+           }         
+
+           //先调用这里，然后里面一直循环任务，直到条件结束
+           setTimeout(Number,500);
+
+
+
+    </script>
+
+
+
+
+</head>
+
+
+
+
+
+
+<body>
+
+    <p>控制台显示hello</p>
+
+
+
+
+
+
+
+</body>
+
+</html>

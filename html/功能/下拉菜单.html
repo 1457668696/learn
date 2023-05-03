@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!-- 思路
+     1、首先用子绝父相固定好下拉按钮和内容。且把内容设置成块元素竖排
+     2.内容样式设置宽度，用白,阴影等，同时z-index：1优先显示，
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .dropbtn {
+            background-color: rgb(84, 160, 117);
+            color: rgb(238, 238, 238);
+            padding: 8px;
+            border: none;
+            font-size: 16px;
+            /* 光标变小手 move移动光标 text文本 not-allowed禁止*/
+            cursor: pointer;
+        }
+        /* 一个大容器,父相对定位 */
+        
+        .dropdown {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .dropdown-content {
+            /* 下拉内容默认隐藏 */
+            display: none;
+            position: absolute;
+            background-color: rgb(255, 250, 250);
+            min-width: 80px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+        }
+        /* 下拉链接样式 */
+        
+        .dropdown-content a {
+            /* 竖排 */
+            display: block;
+            text-decoration: none;
+            padding: 12px 16px;
+            color: black;
+        }
+        /* 经过时，改变按钮颜色 */
+        
+        .dropdown:hover .dropbtn {
+            background-color: rgb(117, 86, 189);
+        }
+        /* 经过时，显示下拉链接 同时改变按钮链接颜色*/
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        /* 触摸链接时的样式 */
+        
+        .dropdown:hover .dropdown-content a:hover {
+            background: rgb(117, 168, 202);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dropdown">
+        <button class="dropbtn">个人空间</button>
+        <div class="dropdown-content">
+            <a href="#">说说</a>
+            <a href="#">相册</a>
+            <a href="#">留言版</a>
+        </div>
+    </div>
+</body>
+
+</html>

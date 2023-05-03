@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>第一</p>
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <div id="testId"> id选择器</div>
+
+<!----------------------------------------现代Javascript教程  ---------------------->
+
+
+
+
+<!-- 例如，我们考虑一下 <input> 元素的 DOM 对象。它属于 HTMLInputElement 类。
+
+它获取属性和方法，并将其作为下列类（按继承顺序列出）的叠加：
+
+HTMLInputElement —— 该类提供特定于输入的属性，
+HTMLElement —— 它提供了通用（common）的 HTML 元素方法（以及 getter 和 setter）
+Element —— 提供通用（generic）元素方法，
+Node —— 提供通用 DOM 节点属性，
+EventTarget —— 为事件（包括事件本身）提供支持，
+……最后，它继承自 Object，因为像 hasOwnProperty 这样的“普通对象”方法也是可用的。 -->
+
+
+<!-- 主要的 DOM 节点属性有：
+
+nodeType
+我们可以使用它来查看节点是文本节点还是元素节点。它具有一个数值型值（numeric value）：1 表示元素，3 表示文本节点，其他一些则代表其他节点类型。只读。
+nodeName/tagName
+用于元素名，标签名（除了 XML 模式，都要大写）。对于非元素节点，nodeName 描述了它是什么。只读。
+innerHTML
+元素的 HTML 内容。可以被修改。
+outerHTML
+元素的完整 HTML。对 elem.outerHTML 的写入操作不会触及 elem 本身。而是在外部上下文中将其替换为新的 HTML。
+nodeValue/data
+非元素节点（文本、注释）的内容。两者几乎一样，我们通常使用 data。可以被修改。
+textContent
+元素内的文本：HTML 减去所有 <tags>。写入文本会将文本放入元素内，所有特殊字符和标签均被视为文本。可以安全地插入用户生成的文本，并防止不必要的 HTML 插入。
+hidden
+当被设置为 true 时，执行与 CSS display:none 相同的事。 -->
+
+
+
+<!-- 总结
+特性（attribute）—— 写在 HTML 中的内容。
+属性（property）—— DOM 对象中的内容。
+简略的对比：
+
+属性	特性
+类型	任何值，标准的属性具有规范中描述的类型	字符串
+名字	名字（name）是大小写敏感的	名字（name）是大小写不敏感的
+操作特性的方法：
+
+elem.hasAttribute(name) —— 检查是否存在这个特性。
+elem.getAttribute(name) —— 获取这个特性值。
+elem.setAttribute(name, value) —— 设置这个特性值。
+elem.removeAttribute(name) —— 移除这个特性。
+elem.attributes —— 所有特性的集合。
+在大多数情况下，最好使用 DOM 属性。仅当 DOM 属性无法满足开发需求，并且我们真的需要特性时，才使用特性，例如： -->
+
+
+
+
+
+
+
+</body>
+<script>
+
+
+//一共有 12 种节点类型。实际上，我们通常用到的是其中的 4 种：
+
+/*
+
+1.document —— DOM 的“入口点”。
+2.元素节点 —— HTML 标签，树构建块。
+3.文本节点 —— 包含文本。
+4.注释 —— 有时我们可以将一些信息放入其中，它不会显示，但 JS 可以从 DOM 中读取它。
+
+
+$0可在控制台检查选取节点
+
+  */
+    //docoment对象，应该说是一个接口，更是一个集合。包含了很多其他元素，提供一些通用的api获取URL，创建元素
+    document.body.style.background = "red";
+    setTimeout(() => document.body.style.background = "", 2000);
+
+
+    document.documentElement  //<HTML>  
+    document.body             //<body>  可能为空，因为需要加载
+    document.head             //<head>  可以插入编码等
+
+
+    //遍历子元素集合，DOM树
+    for (let i = 0; i < document.body.childNodes.length; i++) {
+        console.log(document.body.childNodes[i]);
+
+    }
+
+    console.log('---------------分割线---------------')
+
+    //for of遍历，是集合不是数组，不能用for in，
+    for (const iterator of document.body.childNodes) {
+        console.log(iterator);
+    }
+
+
+
+    //for in出来的是可枚举的，多出来很多无用的属性
+    console.log('---------------分割线---------------')
+    for (const iterator in document.body.childNodes) {
+        console.log(iterator);
+    }
+
+    //firstChild第一个元素
+    //lastChild最后一个元素
+    //当元素很近的时候很适合使用，很远就是用css选择器querySelector
+
+
+
+    console.log('------------------------分割线------------------------')
+    for (const iterator of document.body.children) {
+
+        console.log(iterator);
+
+    }
+
+
+    //DOM选择目前为止，
+    //最常用的是querySelector(第一个)和querySelectorAll,静态的.通常用于很远的元素
+    //但是getElement(s)By*可能会偶尔有用，或者可以在旧脚本中找到。动态的。
+    //除了id.带s的返回的是一个集合，记得使用[0]访问元素
+
+    //id选择器
+    let elem = document.getElementById('testId');
+    elem.style.background = 'red';
+
+    let li = document.querySelectorAll('ul> li:last-child');
+    for (const iterator of li) {
+
+        console.log('---------------------------分割线---------------')
+        console.log(iterator);
+    }
+
+
+    //querySelector           单个元素
+    //querySelectorAll        元素集合
+    //getElementById  id      单个元素
+    //getElementsByName       集合，属性name
+    //getElementsByTagNametag  标签名
+    //getElementsByClassNameclass   类名
+
+
+    //elem.matches(css)用于检查elem与给定的 CSS 选择器是否匹配。
+    //elem.closest(css)用于查找与给定 CSS 选择器相匹配的最近的祖先。elem本身也会被检查。
+
+
+
+    //两种控制台输入方式比较
+    console.log('----------------------控制台输入----------------------')
+    console.log(document.body);
+    console.dir(document.body);  //对于DOM来说，更详细
+
+
+
+    //NODE最大接口
+
+
+    //1.nodeType       1是元素，3是文本，8是注释，9是document对象。其他自行查找
+
+    let nt = document.body;
+    console.log('-------------------------------------------分割线-----------------------')
+    console.log(nt.nodeType);
+
+
+    //2.标签名 TagName nodeName。对于元素无区别，对于注释，node能显示
+
+
+
+    //3.innerHTML  内容,元素的HTML内容
+    let p = document.querySelector('p');
+    console.log(p.innerHTML);
+    console.log(p.outerHTML);
+    console.log(p.textContent);        //更安全
+    p.innerHTML = '修改后的内容';
+
+//innerHTML+=做了以下工作：
+//1. 移除旧的内容。
+//2. 然后写入新的innerHTML（新旧结合）。
+
+
+//4.outerHTML 完整的HTML      替换。要记住，它不会改变我们所写的元素（‘elem’）。而是将新的 HTML 放在其位置上。我们可以通过查询 DOM 来获取对新元素的引用。
+
+//5.textContent   元素内的文本，
+
+//6.nodeValue或者data    非元素节点的内容，
+
+
+
+
+//7.hidden true等同display:none
+
+
+//标签的特性和元素的属性
+
+
+//如果标签是<body id="page">，那么 DOM 对象就会有body.id="page"。
+//标签的标准特性会转换成属性，但不标准的不会转换，DOM是一个对象，大小敏感，且可以修改，增加。
+//●●●●●●●●特性（attribute）— 写在 HTML 中的内容。 属性（property）— DOM 对象中的内容。
+//简略的对比：属性特性类型任何值，标准的属性具有规范中描述的类型字符串名字名字
+//（name）是大小写敏感的名字（name）是大小写不敏感的操作特性的方法：
+
+
+
+
+
+
+
+</script>
+
+</html>

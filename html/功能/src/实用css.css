@@ -1,0 +1,117 @@
+    /* 1.清楚所有内外边距 实用自己定义布局p,h1等占用*/
+    
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    /* div,p,h等盒子居中技巧，尤其是固定宽度的盒子 */
+    
+    div {
+        margin: 0 auto;
+    }
+    /* 2.清楚链接下划线 改变颜色*/
+    
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+    /* 3.圆形盒子 *全设置成一半就是圆形。高度一半是圆角矩形 也可以顺时针，左上开始一一设置*/
+    
+    div {
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+        background-color: antiquewhite;
+        box-shadow: 10px 17px 10px 0px rgba(107, 107, 107, 0.3);
+        /* 水平位置 垂直位置 模糊距离 阴影尺寸 颜色 内部阴影  同理还有文字阴影*/
+    }
+    /* 4.链接选中变色 */
+    
+    a:hover {
+        background-color: antiquewhite;
+    }
+    /*  5.去除列表小点 */
+    
+    .none {
+        list-style: none;
+    }
+    /* 6.设置了了宽度的同时，保证左右外边距auto会自动居中 */
+    /* 如果是单行文字，保证行高等于盒子高度就可以 */
+    
+    .box {
+        margin: 100px auto;
+        height: 40px;
+        line-height: 40px;
+    }
+    /* 7.媒体查询，这里有点相反，意味最大为也就是小于571，或者min-width最小为，意味大于 */
+    
+    @media screen and (max-width:571px) {
+        body {
+            background-color: yellow;
+        }
+    }
+    /* 属性写法 */
+    /*  media="(max-width: 799px)"     */
+    /* 8.遇到语义化斜体，粗体之类的，可以使用正体 */
+    
+    .normal {
+        font-style: normal;
+    }
+    /* 9.------------------盒子转换------------------------ */
+    /* 块元素，可以指定宽高，内外边距，独占一行，默认父元素宽度 */
+    /* 行内元素，无法指定宽高，不换行。内容撑开，基本只能设置水平（宽）方向的边距* /
+    /* 行内块元素，不独占一行，但却可以设置宽高。只需要给他们的父级添加text-alien:center,文字居中 */
+    
+    .a {
+        /* 转化为块级元素，可以设置宽高，同理inline,line-block             最常用13*/
+        display: block;
+        width: 100px;
+        height: 100px;
+        background-color: rgb(247, 199, 199);
+    }
+    /* 转换为行内元素 */
+    
+    .line {
+        display: line;
+    }
+    /* 10.布局特性 */
+    
+    p1 {
+        display: block;
+        display: none;
+        visibility: hidden;
+        visibility: visible;
+        overflow: hidden;
+        /* 滚动条显示隐藏的，也可以设置auto让他自动判断是否滚动，一般都隐藏，定位的尽量不要隐藏*/
+        overflow: scroll;
+        /* 除了转换为块元素之外还有显示元素的意思，none就是隐藏，隐藏后脱标 .visibility不脱标还占用 overflow对溢出（文字大于盒子）的部分隐藏*/
+    }
+    /* 11.盒子嵌套，里面的盒子添加外外边距的时候，需要在父盒子加overflow:hidden，或者给父元素加边框/内边距 -->
+       <span>行内尽量只设置左右外边距，除非转换为块或者行内块</span> --> */
+    /* 12.如果要展示图片除了直接img还可以div盒子设置背景图片，也不会超出，还可以设置文字等 */
+    
+    img {
+        background-image: url();
+    }
+    /* 13.边框设置 可以设置出很好看的导航栏*/
+    
+    div {
+        border: 1px solid #000;
+    }
+    /* 14.使用浮动后，如果浮动div的父元素没有高，位置会被取消，通过css动态添加标签实现占位1·    */
+    /* 或者在父元素overflow: hidden; */
+    
+    .clearfix::after {
+        content: '';
+        display: block;
+        clear: both;
+        /* 隐藏 */
+        height: 0;
+        visibility: hidden;
+    }
+    /* 15.任何隐藏显示都是先定位在该元素附近，然后设置样式display:none，通过伪类：hover变成display：block */
+    /* 16.使用浮动布局的时候,自己计算好位置，然后最后一个浮动的盒子贴边设置 */
+    
+    .body .two .last {
+        margin-right: 0;
+    }

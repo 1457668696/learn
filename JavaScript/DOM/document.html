@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <script>
+          /* -----------------------------------作为DOM入口------------------------------ */
+        /* -------------------------------------Document的常用属性和方法------------------------------ */
+
+
+        console.log(document.doctype);     //文档类型
+        console.log(document.characterSet);//字符集 
+        console.log(document.title);       //标题    
+        console.log(document.readyState);  //加载状态 ,状态改变会触发readystatechange事件
+
+
+        //几种状态
+        switch (document.readyState) {
+            case "loading":
+                //文档正在加载中
+                break;
+
+            case "interactive":
+                //Dom已经加载，但是css样式、图片、框架未加载，
+                const span = document.createComment('span');
+                span.textContent = '一个span元素';
+                document.body.appendChild(span);
+                break;
+
+            case "complete":
+                //所有内容加载完毕
+                const cssRule = document.styleSheets[0].cssRules[0].cssText;
+                console.log(`第一个样式表规则为${cssRule}`);
+                break;
+        }
+
+        //模拟事件
+        document.onreadystatechange = function () {
+            if (document.readyState === 'complete') {
+                initApplication();
+            }
+        };
+
+
+
+
+
+
+
+
+        console.log(document.documentElement); //html节点，或者说根元素
+
+        const rootElement = document.documentElement;
+
+        //html元素的所有子节点集合
+        const firstTier = rootElement.childNodes;
+
+        //遍历
+        for (let index = 0; index < firstTier.length; index++) {
+            console.log(firstTier[index]);
+
+        }
+
+
+
+
+        console.log(document.body);
+        console.log(document.head);
+        console.log(document.activeElement);  //指向当前焦点元素，加载期间指向null,加载完成指向body
+        console.log(document.hasFocus());  //判断当前元素是否获取焦点
+        console.log(document.all);  //所有标签 
+        console.log(document.links); //所有链接，有length属性和索引
+        console.log(document.styleSheets);
+        console.log(document.scripts);
+        console.log(document.images);
+        console.log(document.anchors); //锚点
+        console.log(document.forms);  //表单
+        console.log(document.documentURI);  //返回网址，同.URL ，适用所有文档
+        console.log(document.URL);  // 同上，同documeng.location.href，这个只读
+        console.log(document.domain);  //域名
+        console.log(document.location);//当前文档URi信息 
+        console.log(document.cookie);
+
+        设置cookies
+        document.cookie = 'id=123';
+        document.cookie = 'username=ben';
+
+
+        console.log(document.lastModified); //最后修改时间 
+
+
+        /* ----------------------------------------------方法--------------------------- */
+        document.open(); //打开文档
+        document.write() //写入打开的文档，参数是字符串  writeln并换行
+        document.close(); //关闭文档
+
+        document.hasFocus()//判断页面是否获得焦点
+        document.elementFromPoint(x, y) //根据xy坐标获取目标元素，需要支持响应鼠标事件
+
+        document.adoptNode()//将某个节点从原来的文档移除，然后插入当前节点，并返回当前新节点
+        document.importNode() //从外部拷贝指定节点，插入当前文档
+
+
+        //根据 id 属性获取单个节点：getElementById             只支持document多个id取第一个
+        //根据 name 属性获取节点列表：getElementsByNames       返回数组
+        //根据标签名获取元素列表：getElementByTagName          类数组对象，可以用在element.获取后代，没有返回空，不是null,可以使用通配符（*）
+        //根据 class 属性获取元素列表：getElementsByClassName  集合，可以多个对象，用，隔开
+        // CSS 选择器匹配第一个符合的元素：querySelector        一个，第一个，没有返回null
+        // CSS 选择器匹配所有符合的元素：querySelectorAll       多个
+
+
+        //创建元素节点：document.createElement
+        let newElem = document.createElement('p');   //创建p标签
+        newElem.textContent = "我是里面的文字";
+        document.body.appendChild(newElem);        //放入页面中
+
+
+
+
+        //创建属性节点：document.createAttribute
+        const node = document.getElementById('node');
+        const att = document.createAttribute('name');     //创建属性节点
+        att.value = 'newValue';              //赋值
+
+        node.setAttribute(att);            //给元素添加属性
+        console.log(node.getAttribute('name'));
+
+
+        document.createDocumentFragment();  //创建空白文档，不在DOM，在内存中
+        const list = document.getElementById('ul');
+        const fragment = document.createDocumentFragment();
+        const browsers = ['Firefox', 'Chrome', 'Opera', 'Safari', 'Internet Explorer'];
+
+        browsers.forEach(function (browser) {
+            const li = document.createElement('li');
+            li.textContent = browser;
+            fragment.appendChild(li);
+        });
+
+        list.appendChild(fragment);
+
+        //DocumentFragment 是没有父节点的最小文档对象，常用于存储 HTML 和 XML 文档，它继承了 Node，因此它有 Node 的所有属性和方法，完全可以操作 Node 那样操作 DocumentFragment。
+        //DocumentFragment 文档片段是存在于内存中的，没有在 DOM 中，所以将子元素插入到文档片段中不会引起页面回流，因此使用 DocumentFragment 可以起到 性能优化 作用。
+
+        //创建文档片段
+        const frag = Document.createDocumentFragment()
+
+        // DocumentFragment 实际上像一个伪 DOM 节点
+        for (let i = 0; i < 10; i++) {
+            const li = document.createElement('li');
+            li.innerHTML = 'List item' + i;
+            frag.appendChild(li);
+        }
+
+        // 往 DocumentFragment 中添加元素与操作普通 DOM 节点一样
+        // 一旦页面 DOM 加载完成，就可以访问了
+        listNode.appendChild(frag);
+
+    //设置属性节点到元素节点：document.setAttribute
+    //创建文本节点：document.createTextNode
+    //创建注释节点：document.createComment
+    //创建空白文档片段：document.createDocumentFragment
+
+
+
+
+
+
+
+    //添加元素属性，应该说直接改变标签的css类
+
+// className会覆盖掉原来的字符串。
+
+// classList有三个方法，
+
+// add,添加
+// remove移除
+// toggle,不存在就添加，存在就删除
+// contain是否包含
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+
+<button id="elem">多次事件监听</button><br>
+
+<button id="evens">事件对象属性</button><br>
+
+<button id="events">传入对象作为监听程序</button><br>
+
+<button id="eventss">传入类作为监听程序</button><br>
+
+<button id="disbutt">按钮消失</button>
+
+
+<script>
+
+
+//两个事件处理程序
+let hander1= () => console.log("第一次监听");
+let hander2= () => console.log("第二次监听");
+
+
+
+//绑定事件，@2这是使用了DOM属性的方法。如果dom元素的id名称不和js内置属性或全局变量重名的话，该名称自动成为window对象的属性
+elem.onclick= () => console.log("你好啊");
+
+
+
+//监听事件(多次事件)  @3使用了监听器  ，这里其实就是最好用匿名函数的地方。                               
+elem.addEventListener("click",hander1)
+elem.addEventListener("click",hander2);
+
+
+//addEventListener("事件名",处理程序[选项])，有个特殊用法就是DOM加载完毕执行动作。DOMcontentLoader
+document.addEventListener('DOMContentLoaded',()=>{console.log('页面加载完毕')})
+
+
+
+
+
+//清除事件，主要使用addEventListener绑定的事件，如果是一个匿名函数，就无法通过remove清除事件，最好是赋值给一个变量
+//如上边的hander
+
+/* 以下代码无效 */
+elem.addEventListener("click",()=>{
+
+    console.log('匿名函数绑定');
+})
+ elem.removeEventListener("click",()=>{
+
+    console.log('匿名函数绑定');
+})
+
+/* 以下有效 必须传入的是同一个函数，匿名函数做不到这一点，即使内容相同*/
+elem.removeEventListener("click",hander1)
+//清除了第一次事件绑定
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//事件对象even
+//（this失效的时候(即使用箭头函数的时候),可以用event.currentTarget代替，html属性中依然有用，因为会映射到js中）                                                                     
+evens.onclick= () => console.log("事件类型："+event.type+"\n事件绑定元素："+event.currentTarget+"\n事件坐标"+event.clientX+","+event.clientY);
+
+
+
+
+
+
+
+//*            除了函数，还可以使用对象，使用类来写事件处理程序           */
+
+
+
+
+//对象，处理事件名不可变
+let obj ={
+    handleEvent(event) {
+
+        console.log(event.type+event.currentTarget);
+    }};
+
+
+//绑定监听,传入一个对象
+events.addEventListener("click",obj);
+
+
+
+
+//类
+class Menu{
+
+    handleEvent(event){
+      switch(event.type){
+           
+           case 'mousedown' :
+           eventss.innerHTML = "鼠标按下了";
+           break;
+
+        //    case 'mousedown' :
+        //    eventss.style.display = "none";
+        //    break;
+
+           case 'mouseup':
+           eventss.innerHTML = "...鼠标已经放开";
+           break;
+        
+      }
+
+   setTimeout(()=>  eventss.innerHTML = "可以再试一次",5000);
+
+    }
+
+}
+
+
+//绑定监听事件
+let menu=new Menu();
+eventss.addEventListener("mousedown",menu);
+eventss.addEventListener("mouseup",menu);
+
+
+
+
+
+//按钮消失
+let diapalyB= () => disbutt.style.display="none";
+
+
+disbutt.addEventListener('click',diapalyB);
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

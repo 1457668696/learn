@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+
+
+    <script>
+//发起一个请求
+//与同步函数不同，fetch() 在请求仍在进行时返回，
+//这使我们的程序能够保持响应性。响应显示了 200（OK）的状态码，意味着我们的请求成功了。
+const fetchPromise = fetch('https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json');
+
+console.log(fetchPromise);
+
+fetchPromise.then(response => {
+
+console.log(`响应码:${response.status}`);
+
+});
+
+console.log("已发送请求……/n");
+
+//Promise 的优雅之处在于 then() 本身也会返回一个 Promise，可以进行链式编程,Promise链
+
+const fetchPromise1 = fetch('https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json');
+
+fetchPromise1
+     .then(response => {
+       return response.json();
+     })
+      .then(json => {
+     console.log(json[0].name);
+      })
+
+
+
+
+
+
+//如何捕获错误，使用promise对象的catch()函数
+const fetchPromise2 = fetch('https://111mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json');
+fetchPromise2
+     .then(response => {
+      if(!response.ok){
+       throw new Error('HTTP请求错误:${response.status}');
+
+      }
+       return response.json();
+     })
+      .then(json => {
+     console.log(json[0].name);
+      })
+      .catch(error => {
+     console.error('无法获取产品列表：${error}');
+
+      });
+
+
+//如果失败一个就调用catch方法，如果没有失败就一个一个遍历
+const fetchPromise3 = fetch('https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json');
+const fetchPromise4 = fetch('https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/not-found');
+const fetchPromise5 = fetch('https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json');
+
+Promise.all([fetchPromise3, fetchPromise4, fetchPromise5])
+  .then( responses => {
+    for (const response of responses) {
+      console.log(`${response.url}：${response.status}`);
+    }
+  })
+  .catch( error => {
+    console.error(`获取失败：${error}`)
+  });
+
+//全部失败才返回失败
+ const fetchPromise6 = fetch('https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json');
+const fetchPromise7 = fetch('https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/not-found');
+const fetchPromise8 = fetch('https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json');
+
+Promise.any([fetchPromise6, fetchPromise7, fetchPromise8])
+  .then( response => {
+    console.log(`${response.url}：${response.status}`);
+  })
+  .catch( error => {
+    console.error(`获取失败：${error}`)
+  });
+
+
+
+
+
+
+
+
+
+
+
+  async function fetchProducts() {
+  try {
+    // 在这一行之后，我们的函数将等待 `fetch()` 调用完成
+    // 调用 `fetch()` 将返回一个“响应”或抛出一个错误
+    const response = await fetch('https://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json');
+    if (!response.ok) {
+      throw new Error(`HTTP 请求错误：${response.status}`);
+    }
+    // 在这一行之后，我们的函数将等待 `response.json()` 的调用完成
+    // `response.json()` 调用将返回 JSON 对象或抛出一个错误
+    const json = await response.json();
+    console.log(json[0].name);
+  }
+  catch(error) {
+    console.error(`无法获取产品列表：${error}`);
+  }
+}
+
+fetchProducts();
+
+
+
+
+
+//promise对象的作用就是获取异步消息，完成和拒绝。完成触发then方法，拒绝触发catch方法
+new Promise((resolve,reject)=>{
+    setTimeout( ()=>{
+        if(Math.random()<0.2){
+    gift='小黄鱼'
+    resolve(gift);
+        }else{
+          gift='空空如也'
+         reject(gift);
+        }
+},2000);
+
+}).then(gift=>{
+console.log('第二次我收到了礼物'+gift)
+
+}).catch(gift=>{
+    console.log('第二次我没有收到礼物'+gift)
+})
+
+
+
+
+//如果我们只是需要返回的数据。可以返回一个promise对象，然后使用async关键字和await，会等待await函数执行完毕再输出
+let getGift=()=>{
+      return new Promise((resolve,reject)=>{
+
+        setTimeout( ()=>{
+        if(Math.random()<0.2){
+    gift='小黄鱼'
+    resolve(gift);
+        }
+
+
+        //这里为什么会出错呢，错误信息不能返回？只能在函数哪里用try捕获了
+        else{
+         gift="没有获得礼物"
+         reject(gift);
+        }
+
+
+},3000);
+})
+}
+
+
+async function executAs(){
+
+
+    try{
+    //这里会等待这个函数执行完毕再往下执行
+    //使用tay catch捕获这里的拒绝异步信息
+   let gift=await getGift();
+   console.log(gift)
+    }
+    catch(error){
+        console.log(`${error}`);
+    }
+}
+
+
+executAs();
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    
+</body>
+</html>

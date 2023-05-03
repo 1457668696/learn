@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+<script>
+
+
+   let gold= document.getElementsByClassName('m_room s_line');
+     var randoms=Math.round((Math.random()+9)*1000);
+     var times=Math.round((Math.random()+6)*10000);
+     let fristB= gold[2].getElementsByTagName('p');
+     let free=fristB[0].innerText;
+     let freeGold= free.substr(3,5);
+     console.log("当前油量："+freeGold);
+
+     console.log("刷新间隔为："+times);
+
+    console.log("本次添油底线为："+randoms);
+
+    var a=setInterval(add,60000)
+
+    function add(){
+    if (freeGold<randoms){
+
+       addFullOil();
+
+     }else{
+      
+    window.setTimeout(function(){
+
+    window.location.reload();},times);
+     }
+
+
+    }
+
+
+    
+for(i=0;i<50;i++){
+
+
+killCockroach(i)
+
+
+}
+
+
+
+
+</script>
+
+
+
+
+
+
+
+</head>
+<body>
+    
+</body>
+</html>

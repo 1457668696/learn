@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+/* -------------------------------------------------数组声明-------------------------------------------  */
+const a = new Array(2);
+const b = new Array("你好", "我好", "大家好");
+const c = [1, 2, 3];
+
+
+//伪数组，有长度的数组但是没有pop，push方法，argument
+document.querySelectorAll('kk');
+
+// 检测是否为数组
+console.log(a instanceof Array);
+//H5新增的方法  ie9以上
+console.log(Array.isArray(b));
+
+/* -------------------------------------------------数组属性-------------------------------------------  */
+console.log(c.length);
+
+
+
+/* -------------------------------------------------数组方法-------------------------------------------  */
+// 队列方法插入移除，用索引也可以，且越界为underlined
+a.push("你好");               //添加到数组末尾，可以多个插入，并返回新长度
+a.unshift("你好");            //添加到数组开头，可以多个插入，并返回新长度 
+a.pop("你好");                //删除数组最后一个，并返回该值
+a.shift("你好");              //删除数组开头，并返回该值 
+a.splice(0,5);                //删除从0开始的几个元素     
+
+// 数组中工资超过2000的删除，剩余的放到新数组里面
+const arr = [1500, 1200, 2000, 2100, 1800];
+arr.indexOf('b');             //返回索引，没有就是-1
+arr.toString()                //转字符串
+a.join('');                   //同上，但是有分隔符
+a.reverse();                  //数组翻转
+
+
+
+//数组排序，如果是b-a就是降序
+a.sort((a,b)=>{          
+    return a-b;
+})
+
+// 遍历
+for (let i = 0; i < c.length; i++) {
+   console.log(a[i]);   
+}
+const newArr = [];
+for (let i = 0; i < arr.length; i++) {
+            if (arr[i] < 2000) {
+                // newArr[newArr.length] = arr[i];
+                newArr.push(arr[i]);
+            }
+        }
+        console.log(newArr);
+
+        // 数组去重
+        function unique(arr) {
+            const newArr = [];
+            for (var i = 0; i < arr.length; i++) {
+                if (newArr.indexOf(arr[i]) === -1) {
+                    newArr.push(arr[i]);
+                }
+            }
+            return newArr;
+        }
+        var demo = unique(['blue', 'green', 'blue'])
+        console.log(demo);
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

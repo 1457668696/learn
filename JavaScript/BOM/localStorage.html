@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+
+
+<script>
+   localStorage.setItem(key,value);       //储存数据
+
+   localStorage.getItem(key);            //获取数据
+
+   localStorage.removeItem(key)          //删除数据
+ 
+//如何储备复杂类型，对象可以使用json字符串传递
+let proson={
+      name:'小米',
+      price:1999
+}
+
+
+//存入JSON对象
+localStorage.setItem('goods',JSON.stringify(peoson));
+
+//取出JSON对象
+let b=JSON.parse(localStorage.getItem('goods'))
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+    
+</body>
+</html>

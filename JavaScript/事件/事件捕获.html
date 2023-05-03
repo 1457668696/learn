@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+      body *{
+         margin: 10px;
+         border: 1px solid blue;
+      }
+
+
+
+
+    </style>
+</head>
+<body >
+    
+
+
+
+<!-- 最外层 -->
+    <form>form
+    
+        <!-- 中间层 -->
+    <div>div
+
+        <!-- 最里层 -->
+    <p >p</p>
+
+    </div>    
+    </form>
+<br>
+
+
+<script>
+
+for (let elem of document.querySelectorAll('*')) {
+    
+    //true表示开启捕获
+     elem.addEventListener("click",e=>{console.log(`捕获中：${elem.tagName}`)},true);
+     elem.addEventListener("click",e=>{console.log(`冒泡中：${elem.tagName}`)});
+
+}
+
+/* 
+even.target  引发事件最深元素
+
+(this)even.currentTarget 处理事件的当前元素
+
+even.evenPhase  当前阶段
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+
+<head>
+       <meta charset="UTF-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Document</title>
+</head>
+
+<body>
+
+       <script>
+
+              //    1.因为window对象被复用为ECMAScript的Global对象，
+              //      所以通过var声明的所有全局变量和函数都会变成window对象的属性和方法
+              //      let和const不行
+
+              var age = 29;
+              var sayAge = () => alert(this.age);
+
+
+
+              //    定义在全作用域中，成为window对象成员，所以可以被window对象访问 
+
+              alert(window.age);
+              sayAge();
+              window.sayAge();
+
+
+
+              //     2.另外，访问未声明的变量会抛出错误，但是
+              //       可以在window对象上查询是否存在可能未声明的变量。比如：
+
+              var newValue = oldValue;
+
+              var newValue = window.oldValue;          //这里是属性查询
+              console.log(newValue);
+
+
+
+              //     3.窗口，浏览器可能会拦截
+              console(window.innerHeight);        //浏览器高度     
+
+
+
+
+
+  /* -----------------------------------------窗口高度不太好测试---------------------------------  */
+
+
+
+
+
+              //                                      定时器
+
+
+              //                                   1.settimeout                                
+
+              //windows可省略，第二参数是等待时间后添加到任务队列，只执行一次。
+              let Timeid = setTimeout(() => console.log('hello'), 3000)
+
+              //返回一个超时ID作为唯一标示，第几个任务。只有一个就是等=1.可以在任务未执行时取消
+              console.log(Timeid);
+
+              //如果在set执行前调用了这个方法，就会取消任务，执行后无效。要绑定时间的
+              clearTimeout(Timeid);
+
+
+
+
+
+              //                                   2.setInterval
+
+              //同理直接用，执行时间短、非阻塞的回调函数比较适合setInterval()，定时添加任务。不关心执行完成
+              let a = 1;
+              let Timeid1 = setInterval(() => {
+
+                     console.log(`正在加加：${++a}`);
+
+                     if (a == 20) {
+
+                            //取消方法
+                            clearInterval(Timeid1);
+
+                     }
+              }
+                     , 1000);
+
+
+
+              //                                  3.嵌套setTimeout（替代2）
+              let num = 0;
+              let max = 10;
+              let Number = () => {
+
+                     num++;
+                     if (num < max) {
+
+                            //这里的任务在内部循环，不要记录id开启新任务
+                            setTimeout(Number, 500);
+
+                     } else {
+
+                            console.log(`已经完成,num为:${num}`);
+
+                     }
+
+              }
+
+              //先调用这里，然后里面一直循环任务，直到条件结束
+              setTimeout(Number, 500);
+
+
+
+
+
+
+
+
+
+
+
+
+              // 1.提示框，里面会被强制转成字符串
+
+              alert('我是提示框');
+
+              // 2.确认框，有返回值，用来判断
+
+              if (confirm('你确定吗')) {
+
+                     alert('你点击了确定');
+              } else {
+
+                     alert('很遗憾');
+              }
+
+              // 3.提示框，提示内容和默认值，取消返回null,确认返回输入值
+
+              let msg = prompt('你今年多大了', '18');
+
+              console.log(msg);
+
+
+              //  4.打印和查找
+
+              //           windows.find();
+              //           windows.print(); 
+
+
+
+
+
+
+
+              //                                       3.导航open
+//                        四个参数1.URL 2.目标窗口（已有或者新建） 3.特性字符型 4.是否替换历史记录布尔值（一般不传）
+
+              try {
+                     let openWindows = window.open("http://www.wrox.com", "_blank");
+
+                     //条件切换
+                     let blocked = false;
+
+                     //检测屏蔽
+                     if (openWindows == null) {
+                              
+                            //返回null已被屏蔽
+                            blocked = true;
+                     } 
+              } catch (error) {
+
+                            //其他错误
+                          blocked=true;
+              }
+                     
+               if (blocked) {
+                     alert('弹窗已被屏蔽')
+               } e
+               
+
+
+
+
+
+
+       </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

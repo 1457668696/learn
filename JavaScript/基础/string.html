@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+/* -------------------------------------------------字符串声明-------------------------------------------  */
+// 字符串的不可变性，尽量不要用+=拼接出新对象
+var str = 'andy';
+ 
+
+
+/* -------------------------------------------------字符串属性-------------------------------------------  */
+// 自动包装了，所以有属性
+str.length;            
+
+
+
+
+/* -------------------------------------------------字符串方法-------------------------------------------  */
+str.indexOf('o',5)        //返回索引值,第二参数值为起始位置，可以不传。
+str.charCodeAt(0)         //返回字符码表，可以判断按下那个键
+str.charAt(3)             //根据索引返回字符
+str[0]                    //html5新增，索引返回
+str.replace('a', 'b')     //替换
+str.concat('red')         //拼接
+str.substr(2, 2)          //截取，开始位置和数量
+str.split(',')            //分割
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // 有一个对象 来判断是否有该属性 对象['属性名']
+ var o = {
+            age: 18
+        }
+        if (o['sex']) {
+            console.log('里面有该属性');
+
+        } else {
+            console.log('没有该属性');
+
+        }
+
+        //  判断一个字符串 'abcoefoxyozzopp' 中出现次数最多的字符，并统计其次数。
+        // o.a = 1
+        // o.b = 1
+        // o.c = 1
+        // o.o = 4
+        // 核心算法：利用 charAt(） 遍历这个字符串
+        // 把每个字符都存储给对象， 如果对象没有该属性，就为1，如果存在了就 +1
+        // 遍历对象，得到最大值和该字符
+        var str = 'abcoefoxyozzopp';
+        var o = {};
+        for (var i = 0; i < str.length; i++) {
+            var chars = str.charAt(i); // chars 是 字符串的每一个字符
+            if (o[chars]) { // o[chars] 得到的是属性值
+                o[chars]++;
+            } else {
+                o[chars] = 1;
+            }
+        }
+        console.log(o);
+        // 2. 遍历对象
+        var max = 0;
+        var ch = '';
+        for (var k in o) {
+            // k 得到是 属性名
+            // o[k] 得到的是属性值
+            if (o[k] > max) {
+                max = o[k];
+                ch = k;
+            }
+        }
+        console.log(max);
+        console.log('最多的字符是' + ch);
+
+
+
+
+
+
+
+         // 查找字符串"abcoefoxyozzopp"中所有o出现的位置以及次数
+        // 核心算法：先查找第一个o出现的位置
+        // 然后 只要indexOf 返回的结果不是 -1 就继续往后查找
+        // 因为indexOf 只能查找到第一个，所以后面的查找，一定是当前索引加1，从而继续查找
+        var str = "oabcoefoxyozzopp";
+        var index = str.indexOf('o');
+        var num = 0;
+        // console.log(index);
+        while (index !== -1) {
+            console.log(index);
+            num++;
+            index = str.indexOf('o', index + 1);
+        }
+        console.log('o出现的次数是: ' + num);
+        // 课后作业 ['red', 'blue', 'red', 'green', 'pink','red'], 求 red 出现的位置和次数
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 清楚所有内外边距 */
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /* 清楚链接下划线 改变颜色*/
+        
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+        
+        body {
+            background-color: rgb(231, 231, 231);
+        }
+        
+        .box {
+            width: 300px;
+            height: 450px;
+            background-color: rgb(251, 251, 251);
+            /* 设计了宽度的同时，保证左右外边距auto会自动居中 */
+            margin: 100px auto;
+        }
+        
+        .box img {
+            /* 适配图片 */
+            width: 100%;
+        }
+        
+        .box p {
+            height: 100px;
+            font-size: 14px;
+            /* 没有位置属性，优先用margin不会撑开盒子 */
+            margin: 25px;
+        }
+        
+        .commpent {
+            font-size: 12px;
+            margin-top: 15px;
+            padding: 0 30px;
+            color: rgb(189, 192, 194);
+        }
+        
+        .info {
+            font-size: 14px;
+            margin-top: 15px;
+            padding: 0 28px;
+        }
+        
+        .info h4 {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        
+        .info span {
+            color: rgb(253, 138, 38);
+        }
+        
+        em {
+            color: rgb(227, 226, 226);
+            font-style: normal;
+            margin: 0 6px 0 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="./src/14.png" alt="">
+
+        <p>樱玉花子原创作品。漂亮的花子加班后公司楼下</p>
+        <div class="commpent">来自于张三的评价</div>
+        <div class="info">
+            <h4><a href="https://xyjxww.cn/">樱玉花子丝袜</a></h4>
+            <em>|</em>
+            <span>99.9元</span>
+        </div>
+
+    </div>
+</body>
+
+</html>

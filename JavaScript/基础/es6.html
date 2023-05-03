@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ 
+
+    <script>
+
+/* 1.全新的变量作用域    块作用域 */
+var a=10;
+for (var a = 0; a < 6; a++) {
+}
+console.log(a);
+// 变量i 的值将会被覆盖。变成6.
+// 使用let则会具有块作用域。const定义常量也是新定义，且不能修改
+
+
+
+/* 2.解析构值     外部变量获取引用*/
+
+let Person={
+      eat:function(){
+         console.log('我正在吃饭');
+      },
+      sleep:function(){
+         console.log('我正在睡觉');
+      }
+ }
+// 假设我需要在外部访问这俩个函数。可以使用解析构值。变量赋值就是把获得对象方法和赋值一同完成
+
+// 如果name没有的话就需要给默认值，防止输出undefined
+let{eat,sleep,name="一个神秘的代码"}= Person;
+   //变量集合                       //寻找匹配
+console.log(name);
+
+
+//实例，初始化用户数据
+function initPerson(data={name:'小王',sex:'男',salary:'2000'}){
+      let{name,sex,salary}=data;
+      console.log(name);
+      console.log(sex);
+      console.log(salary);
+}
+//未传入任何参数，但使用了data对象里面的默认数据
+initPerson();
+
+
+
+/* 3.字符串升级    for of遍历字符串 ``反引号，可以加入变量和表达式 */
+let str='我爱你';
+for (let s of str) {
+//允许字符串通过for遍历，如果是in则是下标,获取位置截取
+    console.log(s);
+}
+
+
+//反引号使用变量
+let name2='张三';
+let sayHe=`你好啊，${name2}一起来嗨皮`
+console.log(sayHe);
+
+//字符串补全
+for(let i=0;i<10;i++){
+    //小于两位则前面补0，如果是padEnd则后边补，默认补空格
+    console.log(i.toString().padStart(2,'0'))
+}
+
+
+/* 4.代理对象 */
+//如果我们给一个对象的变量赋值，但是会改变 他的变量类型，如果固定变量类型呢，使用代理对象
+let obj3={
+    name:'李四',
+    age:36
+}
+let objProxy=new Proxy(obj3,{
+    set(target,key,value){
+       if(key=='age'&&typeof value!='number'){
+       throw new Error('类型不匹配');
+       }
+
+      return target[key]=value;
+    },
+    get(target,key,recrive){
+        return target[key];
+    }
+})
+
+objProxy.age=28;
+console.log(obj3);
+
+
+/* 5.复制数组 */
+let listData={
+   0:'a',
+   1:'b',
+   2:'c',
+   length:3
+}
+
+//伪数组对象，似乎节点类也是伪数组，from成为真数组
+console.log('伪数组\n'); 
+console.log(listData);       
+listData=Array.from(listData);
+//数组
+console.log('数组\n'); 
+console.log(listData);
+
+
+//复制数组
+let newListData=[...listData];
+console.log('复制数组\n'); 
+console.log(newListData);
+
+
+
+
+/*6.7 {name}  更灵活的对象 */
+//属性与名字相同
+let obj={name};
+
+//属性名是变量
+let key='name';
+let obj1={
+
+     [key]:'神秘代码'    
+}
+
+
+/*6.8 关于箭头函数（不指向本身对象） */           //这里给个模板方法。箭头函数上层使用正常函数，就指向这个函数对象
+let person={
+  name:'小花',
+  getName:()=>{
+    return this.name;
+  },
+  sayHi(){
+       setTimeout(()=>{
+
+       console.log(`你好啊，${this.name}`);
+
+       },5000)
+  }
+}
+
+person.sayHi();
+
+
+
+
+/* promise和async函数  主要用于完成异步操作 */
+let gift =null;
+setTimeout( ()=>{
+    gift='生日蛋糕'
+},2000);
+
+//很明显我们还没有等2s就已经显示了，gift为null,如果把输出语句放在settimeout中会导致层叠嵌套。
+ console.log('第一次我收到了礼物'+gift);
+
+//promise对象的作用就是获取异步消息，完成和拒绝。完成触发then方法，拒绝触发catch方法
+new Promise((resolve,reject)=>{
+    setTimeout( ()=>{
+        if(Math.random()<0.2){
+    gift='小黄鱼'
+    resolve(gift);
+        }else{
+          gift='空空如也'
+         reject(gift);
+        }
+},2000);
+
+}).then(gift=>{
+console.log('第二次我收到了礼物'+gift)
+
+}).catch(gift=>{
+    console.log('第二次我没有收到礼物'+gift)
+})
+
+
+//如果我们只是需要返回的数据。可以返回一个promise对象，然后使用async关键字和await，会等待await函数执行完毕再输出
+let getGift=()=>{
+      return new Promise((resolve,reject)=>{
+
+        setTimeout( ()=>{
+        if(Math.random()<0.2){
+    gift='小黄鱼'
+    resolve(gift);
+        }
+
+        //这里为什么会出错呢，错误信息不能返回？只能在函数哪里用try捕获了
+        else{
+         gift="没有获得礼物"
+         reject(gift);
+        }
+},3000);
+})
+}
+
+
+async function executAs(){
+    try{
+    //这里会等待这个函数执行完毕再往下执行
+    //使用tay catch捕获这里的拒绝异步信息
+   let gift=await getGift();
+   console.log(gift)
+    }
+    catch(error){
+        console.log(`${error}`);
+    }
+}
+
+
+executAs();
+
+
+
+
+
+
+
+//严格模式下，this为underfined。非严格为windows
+//改变this指向
+
+function fn(x,y){
+    console.log(x,y);
+}
+
+
+
+//1.call方法，调用且改变指向
+fn.call(Object,arg1,arg2);
+
+//2.apply方法，调用且改变，参数写在数组里面
+fn.call(obj,[5,10])
+
+//3.bind方法,唯一不会运行的，返回的是一个新函数。
+fu.bind(obj,arg1,arg2);
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    
+</body>
+</html>

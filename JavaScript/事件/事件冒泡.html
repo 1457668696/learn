@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+      body *{
+         margin: 10px;
+         border: 1px solid blue;
+      }
+
+
+
+
+    </style>
+</head>
+<body >
+    
+
+
+
+<!-- 最外层 -->
+    <form onclick="console.log('form')">form
+    
+        <!-- 中间层 -->
+    <div onclick="console.log('div')">div
+
+        <!-- 最里层 -->
+    <p onclick="console.log('p')">p</p>
+
+    </div>    
+    </form>
+<br>
+
+<!-- 停止冒泡 -->
+
+<div onclick="console.log('我是顶级属性')">
+    <button onclick="console.log('会冒泡');">往上冒泡</button>
+    <button onclick="console.log('不会冒泡');event.stopPropagation()">不会往上冒泡</button>
+
+</div>
+
+
+
+
+<script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

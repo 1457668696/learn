@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<!-- 作用：为许多相似的元素添加相同的处理 -->
+<body>
+
+<ul id="links">
+<li id="goBaidu">访问百度</li>
+<li id="goBlili">访问哔哩哔哩</li>
+<li id="goJava">访问Java全栈</li>
+
+</ul>
+
+<div id="myDiv">
+<input type="button" value="点我清除事件" id="del">
+</div>
+
+
+
+
+</body>
+
+<script>
+let links=document.querySelector('#links');
+
+links.addEventListener("click",(event=>{
+
+
+//获取当前点击元素
+  let target=event.target;
+
+
+//使用循环语句一一绑定相同事件，原理是事件会向上冒泡。最终由顶级事件处理，大多数鼠标事件和键盘事件都这么处理
+//不需要等待加载完毕，只要渲染出就可点击，节约DOM使用，减少内存
+ switch(target.id){
+    case "goBaidu":
+       console.log('即将访问百度');
+       setTimeout(()=>{location.href="https://www.baidu.com"},2000);
+       break;
+
+    case "goJava":
+       console.log('此网站已经关闭'); 
+       break;
+
+    case "goBlili":
+    console.log('即将访问B站');
+       setTimeout(()=>{location.href="https://t.bilibili.com/?spm_id_from=333.999.0.0"},2000);
+       break;
+ }
+
+
+}));
+
+let del=document.querySelector('#del')
+
+del.onclick=function(){
+    //清除事件
+   links.onclick=null;
+   document.getElementById('myDiv').innerHTML="删除中....";
+   setTimeout(()=>{myDiv.style.display="none"},2000);
+};
+
+
+
+/* 删除DOM事件，占用内存
+
+1.使用dom属性，removeChild()或者replaceChild()删除
+2.使用innerHTMl替代，但是在此之前记得赋值null删除事件，可以被回收
+
+*/
+
+
+
+    
+</script>
+
+
+</html>

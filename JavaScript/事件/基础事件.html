@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+      <!-- 事件是有三部分组成  事件源  事件类型  事件处理程序   我们也称为事件三要素
+        (1) 事件源 事件被触发的对象   谁  按钮
+        (2) 事件类型  如何触发 什么事件 比如鼠标点击(onclick) 还是鼠标经过 还是键盘按下
+        (3) 事件处理程序  通过一个函数赋值的方式 完成 -->
+
+
+
+<!-- EventTarget —— 是一切的根“抽象（abstract）”类。
+
+该类的对象从未被创建。它作为一个基础，以便让所有 DOM 节点都支持所谓的“事件（event）” -->
+
+
+
+
+<!--
+
+单独事件
+
+1.html属性 on<event>           onclick="code" 
+                               使用函数，则使用括号
+ 
+2.dom属性  .on<event>          获取节点以后，btn.onclick      同上本质相同，可以赋值null清除事件
+                               使用函数，赋值的是引用变量名，要页面先把DOM渲染出来，通过this访问dom
+
+
+
+ -->
+
+
+
+
+<body>
+    
+             <!-- 1.点击事件 @1这是使用了html属性的方法   on<event>,通常也绑定函数-->         
+             <!-- 这种方法不宜使用，阅读不变，尽量不要使用。做到分离 -->
+             <!-- 以这种方式指定的事件处理程序有一些特殊的地方。首先，会创建一个函数来封装属性的值。
+              这个函数有一个特殊的局部变量event，其中保存的就是event对象 -->
+请在控制台查看：<br>
+  <input type="button" value="点击事件" onclick="console.log('hello')"><br>                   
+
+  <input type="button" value="函数事件" onclick="test()"><br>
+
+  <input type="button" value="箭头函数" onclick="a()"><br> 
+
+  <input type="button"  id="elem" value="属性绑定" > <br>
+
+
+<!--如果使用 赋值elem.onclick=test;  不需要带括号,只有在html标签中需要（）-->
+  <button onclick="console.log(this.innerHTML)">访问DOM</button>
+
+
+
+  <script>
+               //函数事件
+  function test(){
+
+        for (let index = 0; index < 3; index++) {
+        console.log(index);
+}}
+
+
+
+            //箭头函数
+let a=(()=> console.log("这里使用箭头函数")      );
+
+
+
+
+        //  2. 使用dom属性来分配事件，id为elem 
+    elem.onclick=() => console.log("通过属性绑定,等同与第一个，如果这俩冲突，就以这个为准");
+
+
+
+
+        //  读取属性是很特殊的,这样是无效的,！！！！！！！特性总是字符串
+//   document.body.setAttribute('onclick',function(){console.log(1)});
+ 
+
+
+//鼠标经过：mouseenter  离开：mouseleave   over和out有冒泡，不推荐
+
+//表单焦点：focus  失去：blur
+
+//键盘抬起：keyup 按下：keydown
+
+//表单输入：input
+
+
+
+
+
+
+//sroll滚动事件
+scrollTo //被滚的顶部
+scrollLeft //被滚的左边
+
+document.documentElement.scrollTop    //获取被滚距离，可以读取也可以修改
+
+
+//滚动到指定距离，返回顶部或者底部
+elem.scrollTo(x,y)
+
+
+
+
+//窗口尺寸改变事件。resize
+document.documentElement.clientWidth  //检测屏幕宽度，用于元素时，不包括border,padding，滚动条，
+
+
+//获取元素宽高（只读，包括自身，padding,border）
+//offsetWidth offsetHeight
+
+//获取元素位置，距离自己定位的父元素距离
+offsetLeft,offsetHeiht
+
+
+ 
+
+ </script>
+
+
+</body>
+</html>    

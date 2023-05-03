@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <!--外部引用src不能闭合，必须要成对, 外部引用js.可以缓存，利于很多资源，下次加载更方便，更快。 --> 
+           如果设置了 src 特性，script 标签内容将会被忽略。
+          一般需要使用两个，内部的内部，外部的外部，不不能一起用-->
+
+
+        <!-- 一般来说，只有最简单的脚本才嵌入到 HTML 中。更复杂的脚本存放在单独的文件中。
+              使用独立文件的好处是浏览器会下载它，然后将它保存到浏览器的 缓存 中。
+              之后，其他页面想要相同的脚本就会从缓存中获取，而不是下载它。所以文件实际上只会下载一次。
+              这可以节省流量，并使得页面（加载）更快。 -->
+          
+
+        <!----------------------------------- 输出 --------------------------------------------------------->
+         <!--
+        // 输入框
+        prompt('请输入您的年龄');
+
+        // 警示框
+        alert('计算的结果是');
+
+        //控制台输出 
+        console.log('我是程序员能看到的'); -->
+
+
+
+        <script>
+
+
+                // "use strict" 严格模式，启动新版的语义，放到最前边或者函数前（class和module中自动启动）
+                // undefined是一个顶级属性，它代表某一个变量未定义,类似空指针情况，null却是一个空值
+
+
+                /* -------------------------------------变量----------------------------------- */
+
+                 //变量 注意声明2次会出错。let无法覆盖变量
+                 // 不声明不赋值使用会报错，赋值不声明不会报错。
+                let name = "张山";                       
+                
+
+                 //常量，不能对常量重新赋值,如用来储存颜色，不变化就大写
+                 //也有小写接受实例的，开发实际用的最多
+                const BIRDATS = '18.04.1982';        
+                const ages = 18;                        
+
+
+                 //对象，在方法内用：像是map集合
+                var container = {
+                        name: "张山",                    
+                        age: 15,
+                        say:function(){
+                                console.log('hello');
+                        }
+                }
+                container.say()
+
+
+                ////删除属性：delete obj.prop。
+                delete container.name;
+
+                // 在外部用.进行改变
+                container.name = "张山",               
+                container.age = 15
+              
+                // 访问
+                console.log(container['age']);
+                console.log(container.name);
+
+
+
+
+                /* ------------------------------------------数据类型和运算符----------------------------------------- */
+                console.log(1 / 0);   //等同下边，无异常报错，Java中不行
+                console.log(Infinity) //输出无穷大
+                console.log("not a number" / 2); // NaN，这样的除法是错误的，注意NaN和任何东西运算都是NaN，除非是和0等于1
+                console.log(NaN ** 0); //结果为1,在js中数学运算更安全。如果是Java会抛出运算异常。这是幂运算符，x的y次幂
+
+
+                //  在大多数情况下，±(2的53次方-1) 范围就足够了，
+                //但有时候我们需要整个范围非常大的整数，例如用于密码学或微秒精度的时间戳
+                //BigInt 类型是最近被添加到 JavaScript 语言中的，用于表示任意长度的整数。
+                // 尾部的 "n" 表示这是一个 BigInt 类型
+                const bigInt = 1234567890123456789012345678901234567890n;               //记得加N
+
+
+                //反引号是 功能扩展 引号。它们允许我们通过将变量和表达式包装在 ${…} 中，来将它们嵌入到字符串中。例如：
+                //插值计算表达式
+                let name1 = "小汪";
+                console.log(`${name1}`)
+                console.log(`结果是 ${1 + 2 + 5 + 631}`)
+
+                console.log("类型判断")
+                console.log(typeof name1)                   
+
+
+                console.log(123)
+                //alert自动转成字符串类型，参与运算自动转成数字类型，Sting()，Number（）等转换，字符串转数字的为NaN(这里报错了，不知道原因)
+                let age = Number("你好");
+                console.log(age); // NaN，转换失败
+
+
+                // typeof null 的结果为 "object"。这是官方承认的 typeof 的错误，
+                // 这个问题来自于 JavaScript 语言的早期阶段，并为了兼容性而保留了下来。
+                // null 绝对不是一个 object。null 有自己的类型，它是一个特殊值。typeof 的行为在这里是错误的。
+                //简单点说：typeof 是一个操作符，不是一个函数。这里的括号不是 typeof 的一部分。它是数学运算分组的括号。
+
+
+
+                // 在某些情况下，我们需要将值显式地转换为我们期望的类型。
+                // number类型转换规则：
+                // undefined	       NaN
+                // null	                0
+                // true 和 false      1 and 0
+                // string	去掉首尾空白字符（空格、换行符 \n、制表符 \t 等）后的纯数字字符串中含有的数字。如果剩余字符串为空，则转换结果为 0。否则，将会从剩余字符串中“读取”数字。当类型转换出现 error 时返回 NaN。
+                // 也可以用.toshtring
+                let age1 = Number("13245z");
+                console.log(age);         //转换错误，返回非数
+                console.log(Number(true));   //1
+                console.log(Number(false));  //0
+                console.log("逻辑转换")
+                //直观上为“空”的值（如 0、空字符串、null、undefined 和 NaN）将变为 false。
+                //其他值变成 true。
+                console.log(Boolean(12345))
+                console.log(Boolean(""))
+
+
+                // +=用来链接字符串也是其乐无穷，或者变量追加字符
+                //字符串不可变，不能用数组类赋值，只能整个赋值
+                console.log("一元运算符")
+                let a = 5;
+                console.log(-a);
+                console.log("" - 1 + 0);           // 为-1
+                console.log(4 + 5 + "px")          //这里只有没有数字参与运算，就算链接
+
+
+                //parseInt转换成整数。第二个参数是基数，parseFloat则是小数.注意浮点数直接比较会有误差。
+                console.log(parseInt('3.14'));
+                console.log(parseInt('3.98'));
+                console.log(parseInt('300px'));
+                console.log(parseInt('re300px'));
+
+                console.log(parseFloat('3.14'));  //其他同理
+
+        
+                //变量转换
+                let num = 3.25;
+                console.log(Number(num));
+                console.log(Number('12'));
+
+
+                //隐式转换或者字符拼接
+                console.log('12' - 0);
+                console.log('500' + '300');
+
+
+
+                //逗号运算符
+                //能让我们处理多个语句，使用 , 将它们分开。每个语句都运行了，但是只有最后的语句的结果会被返回。
+                let b = (1 + 2, 3 + 4);
+                alert(b); // 7（3 + 4 的结果）
+                // 第一个语句 1 + 2 运行了，但是它的结果被丢弃了。随后计算 3 + 4，并且该计算结果被返回。
+          
+
+                console.log("逻辑判断")
+                //         当对不同类型的值进行比较时，它们会先被转化为数字（不包括严格相等检查）再进行比较。若是相同类型，比如字符串会逐一比较
+
+                console.log(5 != 6);
+
+
+                // 实际上小写的 "a" 更大。
+                console.log("3" > "22")
+                console.log("Z" > "A");
+                console.log("Glow" > "Glee");
+                console.log("Bee" > "Be");
+                console.log('2' > 1); // true，字符串 '2' 会被转化为数字 2
+                console.log('01' == 1); // true，字符串 '01' 会被转化为数字 1
+
+
+
+
+                //undefined 不应该被与其他值进行比较：
+                alert(null > 0);  // (1) false
+                alert(null == 0); // (2) false
+                alert(null >= 0); // (3) true
+                // 是的，上面的结果完全打破了你对数学的认识。在最后一行代码显示“null 大于等于 0”的情况下，前两行代码中一定会有一个是正确的，然而事实表明它们的结果都是 false。
+                // 为什么会出现这种反常结果，这是因为相等性检查 == 和普通比较符 > < >= <= 的代码逻辑是相互独立的。进行值的比较时，null 会被转化为数字，因此它被转化为了 0。这就是为什么（3）中 null >= 0 返回值是 true，（1）中 null > 0 返回值是 false。
+                // 另一方面，undefined 和 null 在相等性检查 == 中不会进行任何的类型转换，它们有自己独立的比较规则，所以除了它们之间互等外，不会等于任何其他的值。这就解释了为什么（2）中 null == 0 会返回 false。
+
+
+                //空值合并运算符 ?? 
+                //提供了一种从列表中选择第一个“已定义的”值的简便方式。
+                // 它被用于为变量分配默认值：
+                // 当 height 的值为 null 或 undefined 时，将 height 的值设置为 100
+                //  height = height ?? 100;
+                //  ？? 运算符的优先级非常低，仅略高于 ? 和 =，因此在表达式中使用它时请考虑添加括号。
+                // 如果没有明确添加括号，不能将其与 || 或 && 一起使用。
+
+                console.log("??运算符")
+                let h;
+                console.log(h ?? 55)          //未定义所以返回55，||返回的是布尔值
+
+
+
+        </script>
+
+
+
+
+
+</head>
+
+<body>
+
+</body>
+
+</html>

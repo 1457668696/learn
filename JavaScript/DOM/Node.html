@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+  <script>
+
+ //HTML 中的所有内容，甚至注释，都会成为 DOM 的一部分。
+ //DOM1 级定义了 Node 接口，该接口由 DOM 中的所有节点类型实现。这个接口在 JavaScript 中是作为 Node 类型实现的。因此 JavaScript 中所有的节点类型都继承 Node 类型，所有的类型都共享着相同的基本属性和方法。
+/* Node —— 也是一个“抽象”类，充当 DOM 节点的基础。
+
+它提供了树的核心功能：parentNode，nextSibling，childNodes 等（它们都是 getter）。
+Node 类的对象从未被创建。但是还有一些继承自它的其他类（因此继承了 Node 的功能）。 */
+
+
+
+ /* --------------------------------NODE最大接口-------------------------- */
+
+
+//1.nodeType属性       1是元素，3是文本，8是注释，9是document对象。其他自行查找
+ 
+
+//判断，不过最好用数值
+ const app=document.querySelector('.app');
+                   
+                  //1
+ if(app.nodeType==Node.ELEMENT_NODE){
+
+    console.log('这是一个元素节点');
+ }
+
+
+console.log(app.baseURI);    //baseURL绝对路径
+console.log(app.nodeName);    //大写标签名
+console.log(app.nodeValue);    //注释和文本，会返回null或者data
+console.log(app.data);    //对于文本，注释节点用这个获取value
+console.log(app.textContent);    //纯文本。更安全。看情况，返回具体的内容。集合会返回所有内容集合（这里没有解释清除）
+console.log(app.childElementCount);    //子元素数目
+console.log(app.children);    //子元素列表
+console.log(app.childNodes);    //子节点列表，类数组
+console.log(app.lastElementChild);    //最后一个元素节点
+console.log(app.lastChild);    //最后一个子节点
+console.log(app.firstElementChild);    //第一个子元素
+console.log(app.firstChild);    //第一个子节点
+console.log(app.nextElementSibling);    //后第一个兄弟元素
+console.log(app.nextSibling);    //后第一个兄弟
+console.log(app.previousElementSibling);    //前第一个兄弟
+console.log(app.previousSibling);    //前第一个兄弟
+console.log(app.parentNode);    //父节点
+console.log(app.parentElement);    //父元素
+console.log(elem.hidden);    //隐藏节点，等同display:none
+
+
+
+
+/* ------------------------------------方法----------------------------- */
+
+//在前插入elem
+app.insertBefore(elem);
+
+//作为参考元素的最后一个子节点插入
+app.appendChild(elem);
+
+//节点替代     new,old
+app.replaceChild();
+
+
+//删除一个子节点
+app.removeChild();
+
+
+//克隆节点到当前子节点列表中
+app.cloneNode();
+
+
+//判断是否有子节点
+app.hasChildNodes()
+
+
+//判断两个节点是否相等
+app.isEqualNode();
+
+
+childNode继承了Node,也有自己方法
+
+
+//末尾新增
+app.append()
+
+//开头新增
+app.prepend()
+
+//移除节点
+app.remove();
+
+//在前插入
+app.before(elem);
+
+//在后插入
+app.after(elem);
+
+//替换节点
+app.replaceWith(elem);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    
+</body>
+</html>

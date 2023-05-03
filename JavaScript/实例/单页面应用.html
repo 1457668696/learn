@@ -1,0 +1,79 @@
+<!-- 开始 -> 
+    加载HTML和CSS资源 -> 
+    加载JS脚本 -> 
+    初始化应用 -> 
+    监听URL变化 -> 
+    根据URL更新视图 -> 
+    处理用户事件 -> 
+    更新URL -> 
+    更新视图 -> 
+    结束
+ -->
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Single Page Application Example</title>
+</head>
+<body>
+  <!--导航链接-->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!--页面内容-->
+  <main>
+    <div id="home">
+      <h1>Home Page</h1>
+      <p>Welcome to the home page!</p>
+    </div>
+
+    <div id="about">
+      <h1>About Page</h1>
+      <p>Learn more about us!</p>
+    </div>
+
+    <div id="contact">
+      <h1>Contact Page</h1>
+      <p>Get in touch with us!</p>
+    </div>
+  </main>
+
+  <!--JavaScript代码-->
+  <script>
+    // 获取页面上所有链接元素
+    const navLinks = document.querySelectorAll('nav a');
+
+    // 获取页面内容容器元素
+    const content = document.querySelector('main');
+
+    // 遍历每个链接元素并绑定点击事件
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault(); // 阻止链接默认跳转
+
+        // 获取链接的目标位置
+        const target = e.target.getAttribute('href');
+
+        // 获取目标元素并将其内容添加到页面容器
+        const targetContent = document.querySelector(target).innerHTML;
+        content.innerHTML = targetContent;
+
+        // 将浏览器历史记录更新为当前页面
+        window.history.pushState({ target }, '', target);
+      });
+    });
+
+    // 绑定浏览器前进/后退事件
+    window.addEventListener('popstate', e => {
+      // 获取历史记录中的目标位置
+      const target = e.state.target;
+
+      // 获取目标元素并将其内容添加到页面容器
+      const targetContent = document.querySelector(target).innerHTML;
+      content.innerHTML = targetContent;
+    });
+  </script>
+</body>
+</html>

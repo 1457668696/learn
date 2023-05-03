@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- 导航 -->
+
+<body>
+
+    <input type="button" value="前进" id="btnn">
+
+    <script>
+
+
+        // 1.go()方法，可以模拟单应用界面的前进后退，改变URL来的散列值，在历史记录在生成记录
+        let nav = () => {
+
+
+            //历史记录数，用于匹配是否加载的第一个页面
+            if (history.length == 1) {
+                console.log("起点是我的网页" + history.length);
+            }
+
+
+            //后退一页，相反1是前进一页，数字几就是几页
+            history.go(-1);
+
+            //前进和后退，等于1 -1
+            history.back();
+            history.forward();
+
+            //匹配最近的网页
+            history.go('xyjxww.com')
+
+
+        }
+
+
+
+
+
+        //获取DOM，绑定事件
+        let btn = document.querySelector('#btnn');
+
+        btn.addEventListener("click", nav);
+
+
+
+    //  2.历史状态管理（单页面应用）
+       
+    // ......像是栈，pushState入栈，popstate出栈。或者repaceState，
+    //       假的URl包含真的物理URI，刷新会显示404，单页面应用需要解决，框架或者服务器
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>

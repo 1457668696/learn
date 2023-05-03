@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+
+  *{
+    margin: 0 0;
+  }
+     .top{
+        width: 100%;
+        height: 25%;
+        position: relative;
+     }
+     
+
+
+     /* 图片适应父盒子 */
+              img{
+            width: 100%;
+            height: 100%;
+           }
+
+
+
+           
+
+
+
+
+           /* 文字处理 */
+           .text{
+            display: flex;
+            position: absolute;
+            top: 83%;
+            width: 100%;
+            flex-direction: row;    
+            justify-content: space-between; 
+           }
+           
+           #name{
+            margin-left: 2%;
+           }
+
+           #name{
+          
+            font-size: 20px;
+            
+          
+       
+           }
+           #gz{
+            box-sizing: border-box;
+            font-size: 16px;
+            font-weight: 550;
+            display: inline-block;
+            width: 80px;
+            height: 30px;
+            background-color: rgb(255, 255, 255);
+            text-align: center;
+            margin-right: 2%;
+            padding-top: 4px;
+           border-radius: 30px;
+           }
+
+
+
+
+
+
+
+/* 头像 */
+.icon{
+  box-sizing: border-box;
+  height: 50px;
+  width: 50px;
+  margin-top: 2%;
+  margin-left: 2%;
+}
+
+.icon img{
+  border-radius: 25px 25px;
+}
+
+
+.contextImg img{
+  width: 40px;
+  height: 15px;
+  margin-top: 17px;
+}
+
+
+
+.flex1{
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.name{
+  margin-top: 12px;
+}
+
+.right{
+  font-size: 20px;
+  font-weight: 550;
+  position: absolute;
+  right: 3%;
+  top: 20%;
+}
+
+.name1{
+  position: absolute;
+  top: 60%;
+  left: 16%;
+  font-size: 13px;
+  color: rgb(168, 168, 168);
+}
+
+
+
+.mainText{
+  box-sizing: border-box;
+  width: 100%;
+
+  height: 50px;
+  position: relative;
+}
+.maintext{
+  position: absolute;
+  top: 30%;
+  left: 2%;
+}
+
+.mainImg{
+  display: flex;
+  justify-content: space-around;
+
+
+}
+
+.oneImg {
+  
+
+  height: 200px;
+  width: 250px;
+  margin-left: 3%;
+  margin-right: 1%;
+}
+
+.twoImg {
+  height: 200px;
+  width: 250px;
+ 
+  margin-right: 3%;
+  border-radius: 10px;
+}
+
+.twoImg img{
+  border-radius:10px;
+
+}
+.oneImg img{
+  border-radius:10px;
+ 
+}
+
+.main{
+  box-sizing: border-box;
+ padding-bottom: 20px;
+  border-bottom: 1px solid rgb(241, 241, 241);
+}
+</style>
+
+</head>
+<body>
+
+
+  <div class="top">
+ 
+<div class="img">
+  <img src="./src/top.png" alt="" srcset="" class="">
+    <div class="text">
+    <span id="name">🦅🐰🍡🐂🌧️</span>
+    <div id="gz">已关注</div>
+  </div>
+
+</div>
+   </div>  
+
+<div class="main">
+  <div class="contain">
+    <div class="flex1">
+<!-- 头像昵称标识 发帖时间 -->
+<div class="icon"><img src="./src/icon.jpg" alt="" srcset=""></div>
+<div class="name">🦅🐰🍡🐂🌧️</div>
+<div class="contextImg"><img src="./src/info.png" alt=""></div>
+<div class="right">...</div>
+<div class="name1">18分钟前</div>
+</div>
+<!-- 文字内容 -->
+<div class="mainText">
+  <div class="maintext">
+    马上直播哦~
+  </div>
+</div>
+
+
+<!-- 图片区域 -->
+<div class="mainImg">
+  <div class="oneImg"><img src="./src/1.jpg" alt=""></div>
+  <div class="twoImg"><img src="./src/2.jpg" alt=""></div>
+</div>
+
+</div>
+</div>
+
+
+<!-- ---------------------------------------------- -->
+<div class="main">
+  <div class="contain">
+    <div class="flex1">
+<!-- 头像昵称标识 发帖时间 -->
+<div class="icon"><img src="./src/icon.jpg" alt="" srcset=""></div>
+<div class="name">🦅🐰🍡🐂🌧️</div>
+<div class="contextImg"><img src="./src/info.png" alt=""></div>
+<div class="right">...</div>
+<div class="name1">04-10 20:54:44</div>
+</div>
+<!-- 文字内容 -->
+<div class="mainText">
+  <div class="maintext">
+    ☀️
+  </div>
+</div>
+
+
+<!-- 图片区域 -->
+<div class="mainImg">
+  <div class="oneImg"><img src="./src/3.jpg" alt=""></div>
+  <div class="twoImg"><img src="./src/4.jpg" alt=""></div>
+</div>
+
+</div>
+</div>
+
+
+<!-- ----------------------------------- -->
+<div class="main">
+  <div class="contain">
+    <div class="flex1">
+<!-- 头像昵称标识 发帖时间 -->
+<div class="icon"><img src="./src/icon.jpg" alt="" srcset=""></div>
+<div class="name">🦅🐰🍡🐂🌧️</div>
+<div class="contextImg"><img src="./src/info.png" alt=""></div>
+<div class="right">...</div>
+<div class="name1">18分钟前</div>
+</div>
+<!-- 文字内容 -->
+<div class="mainText">
+  <div class="maintext">
+    马上直播哦~
+  </div>
+</div>
+
+
+<!-- 图片区域 -->
+<div class="mainImg">
+  <div class="oneImg"><img src="./src/1.jpg" alt=""></div>
+  <div class="twoImg"><img src="./src/2.jpg" alt=""></div>
+</div>
+
+</div>
+</div>
+<div class="main">
+  <div class="contain">
+    <div class="flex1">
+<!-- 头像昵称标识 发帖时间 -->
+<div class="icon"><img src="./src/icon.jpg" alt="" srcset=""></div>
+<div class="name">🦅🐰🍡🐂🌧️</div>
+<div class="contextImg"><img src="./src/info.png" alt=""></div>
+<div class="right">...</div>
+<div class="name1">18分钟前</div>
+</div>
+<!-- 文字内容 -->
+<div class="mainText">
+  <div class="maintext">
+    马上直播哦~
+  </div>
+</div>
+
+
+<!-- 图片区域 -->
+<div class="mainImg">
+  <div class="oneImg"><img src="./src/1.jpg" alt=""></div>
+  <div class="twoImg"><img src="./src/2.jpg" alt=""></div>
+</div>
+
+</div>
+</div>
+<div class="main">
+  <div class="contain">
+    <div class="flex1">
+<!-- 头像昵称标识 发帖时间 -->
+<div class="icon"><img src="./src/icon.jpg" alt="" srcset=""></div>
+<div class="name">🦅🐰🍡🐂🌧️</div>
+<div class="contextImg"><img src="./src/info.png" alt=""></div>
+<div class="right">...</div>
+<div class="name1">18分钟前</div>
+</div>
+<!-- 文字内容 -->
+<div class="mainText">
+  <div class="maintext">
+    马上直播哦~
+  </div>
+</div>
+
+
+<!-- 图片区域 -->
+<div class="mainImg">
+  <div class="oneImg"><img src="./src/1.jpg" alt=""></div>
+  <div class="twoImg"><img src="./src/2.jpg" alt=""></div>
+</div>
+
+</div>
+</div>
+<div class="main">
+  <div class="contain">
+    <div class="flex1">
+<!-- 头像昵称标识 发帖时间 -->
+<div class="icon"><img src="./src/icon.jpg" alt="" srcset=""></div>
+<div class="name">🦅🐰🍡🐂🌧️</div>
+<div class="contextImg"><img src="./src/info.png" alt=""></div>
+<div class="right">...</div>
+<div class="name1">18分钟前</div>
+</div>
+<!-- 文字内容 -->
+<div class="mainText">
+  <div class="maintext">
+    马上直播哦~
+  </div>
+</div>
+
+
+<!-- 图片区域 -->
+<div class="mainImg">
+  <div class="oneImg"><img src="./src/1.jpg" alt=""></div>
+  <div class="twoImg"><img src="./src/2.jpg" alt=""></div>
+</div>
+
+</div>
+</div>
+</body>
+</html>

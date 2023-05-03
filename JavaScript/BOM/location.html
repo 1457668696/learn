@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+
+
+
+        console.log('url哈希值:' + location.hash);  //url哈希值  #号后边的部分，路由跳转
+        console.log('服务器名和端口:' + location.host);  //服务器名和端口
+        console.log('服务器名:' + location.hostname);//服务器名
+        console.log('路径:' + location.pathname); //路径
+        console.log('完整URL:' + location.href);//完整URL
+        console.log('查询字符串' + location.search)          //？符号的部分，传参
+        console.log('端口:' + location.port);//端口
+        console.log('协议:' + location.protocol);//协议
+        console.log('域前名:' + location.username);//域前名
+        console.log('域前密:' + location.password);//域前密
+        console.log('源地址:' + location.origin);//源地址
+
+        //链接跳转,最常用 localtion.assign同理 还有windows.location
+        if (confirm("是否访问个人相册")) {
+            location.href = "https://xyjxww.cn/";
+        }
+
+
+        //不添加历史记录replace
+        location.replace('....');
+
+        //重载和强制重载（缓存）
+        location.reload();
+        location.reload(true);
+
+
+
+        //* ---------------------------------查询字符串----------------------------- */
+        let qs = "?q=javascript&num=10";  
+        let searchParams = new URLSearchParams(qs); 
+        alert(searchParams.toString());  // " q=javascript&num=10" 
+        searchParams.has("num");         // true searchParams.get("num");         // 10 
+        searchParams.set("page", "3"); 
+        alert(searchParams.toString());  // " q=javascript&num=10&page=3" 
+        searchParams.delete("q"); 
+        alert(searchParams.toString());  // " num=10&page=3" 
+
+
+
+        let qss = "?q=javascript&num=10";  
+        let searchParamss = new URLSearchParams(qss); 
+        for (let param of searchParams) {  
+             console.log(param); 
+            }
+             // ["q", "javascript"] // ["num", "10"] 
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+</html>
