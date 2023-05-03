@@ -1,24 +1,7 @@
-# my-app
+# 通用后台管理系统
 
-## Project setup
-```
-yarn install
-```
+## 技术 Vue2+Vue3
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+### 具体
+路由,vuex,axious,elementui
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
