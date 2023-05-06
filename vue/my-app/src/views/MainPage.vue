@@ -40,7 +40,10 @@ import CommonAside from "@/components/CommonAside.vue";
 import CommonHeader from "@/components/CommonHeader.vue";
 export default {
   data(){
-    return{}
+    return{
+
+
+    }
   },
   components:{
     CommonAside,

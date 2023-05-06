@@ -4,8 +4,10 @@ import axios from "axios";
 // 封装一个基础实例
 const http = axios.create({
     // 通用请求前缀
-    baseURL:'/api',
     timeout:5000,
+    headers:{
+        
+    }
 })
 
 
