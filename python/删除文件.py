@@ -37,5 +37,5 @@ def force_delete_folder(path):
 
 
 # 示例：删除名为 "example" 的文件夹及其下所有文件和子文件夹
-folder_path = r"D:\编程\前端"
+folder_path = r"F:\Program Files\finalshell"
 force_delete_folder(folder_path)

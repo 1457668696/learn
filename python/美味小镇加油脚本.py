@@ -30,6 +30,6 @@ while True:
     wait_time = random.randint(60, 360)
     p = requests.post('https://dream233.com/mxxz/addFullOil', verify=False, headers=headers)
     count = count + 1
-    with open("output.txt", "a", encoding="utf-8") as f:
+    with open("../output.txt", "a", encoding="utf-8") as f:
         print(f'当前油量：{oil[0]},\n已经加油{count}次,下次间隔{wait_time}秒,当前时间{formatTime}\n', file=f)
     time.sleep(wait_time)
