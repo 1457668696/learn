@@ -36,7 +36,7 @@ public class ZhshServiceImpl extends ServiceImpl<ZhshMapper,Zhsh> implements Zhs
            while (stop) {
 
                   Unirest.config().verifySsl(false);
-                  Unirest.config().defaultBaseUrl("https://sea.pccsh.cn");
+                  Unirest.config().defaultBaseUrl("https://sea.pccsh.com);
 
                 // 刷新页面，请求1
                 HttpResponse<String> home = Unirest.get("/Map/340_264?sid=2HsGTdIXRs71FJNFjsImIT320Cf51JF3").asString();
@@ -95,7 +95,7 @@ public class ZhshServiceImpl extends ServiceImpl<ZhshMapper,Zhsh> implements Zhs
     @Override
     public Zhsh getGame() {
         Unirest.config().verifySsl(false);
-        Unirest.config().defaultBaseUrl("https://sea.pccsh.cn");
+        Unirest.config().defaultBaseUrl("https://sea.pccsh.com");
         HttpResponse<String> user = Unirest.get("/User/Index/Index?sid=2HsGTdIXRs71FJNFjsImIT320Cf51JF3").asString();
 
         if (user.getBody().contains("撤退")){
