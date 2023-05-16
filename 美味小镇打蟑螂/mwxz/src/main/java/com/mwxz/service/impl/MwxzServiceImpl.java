@@ -44,7 +44,7 @@ public class MwxzServiceImpl extends ServiceImpl<MwxzMapper, Mwxz> implements Mw
 
 
         //封包
-        Unirest.config().defaultBaseUrl("https://dream233.com/mxxz").addDefaultCookie(new Cookie("cache=ebcebb2e23389a192bbf87b04c98ae3a"));
+        Unirest.config().defaultBaseUrl("https://dream233.com/mxxz").addDefaultCookie(new Cookie("cache=ebcebb2e233829a192bbf87b04c98ae3a123"));
         Unirest.config().verifySsl(false);
 
         //请求首页
@@ -86,7 +86,7 @@ public class MwxzServiceImpl extends ServiceImpl<MwxzMapper, Mwxz> implements Mw
 
         Unirest.config().verifySsl(false);
         //封包
-        Unirest.config().defaultBaseUrl("https://dream233.com/mxxz").addDefaultCookie(new Cookie("cache=ebcebb2e23389a192bbf87b04c98ae3a"));
+        Unirest.config().defaultBaseUrl("https://dream233.com/mxxz").addDefaultCookie(new Cookie("cache=ebcebb2e233289a192bbf87b04c98ae3a"));
 
 
         //请求添油
@@ -107,7 +107,7 @@ public class MwxzServiceImpl extends ServiceImpl<MwxzMapper, Mwxz> implements Mw
 
 
         //封包
-        Unirest.config().defaultBaseUrl("https://dream233.com").addDefaultCookie(new Cookie("cache=ebcebb2e23389a192bbf87b04c98ae3a"));
+        Unirest.config().defaultBaseUrl("https://dream233.com").addDefaultCookie(new Cookie("cache=ebcebb2e23389a19322bbf87b04c98ae3a"));
         Unirest.config().verifySsl(false);
 
         //请求好友页
@@ -243,7 +243,7 @@ public class MwxzServiceImpl extends ServiceImpl<MwxzMapper, Mwxz> implements Mw
     public int energy() {
 
         //封包
-        Unirest.config().defaultBaseUrl("https://dream233.com").addDefaultCookie(new Cookie("cache=ebcebb2e23389a192bbf87b04c98ae3a"));
+        Unirest.config().defaultBaseUrl("https://dream233.com").addDefaultCookie(new Cookie("cache=ebcebb2e2332389a192bbf87b04c98ae3a"));
         Unirest.config().verifySsl(false);
 
         String text = Jsoup.parse(Unirest.get("/mxxz/energy_card").asString().getBody()).select("#current_energy").text();
